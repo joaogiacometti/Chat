@@ -1,13 +1,11 @@
-using Api.Contexts;
-using Microsoft.EntityFrameworkCore;
+using Business.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ChatContext>(op =>
-    op.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.ConfigureApp(builder.Configuration);
 
 var app = builder.Build();
 

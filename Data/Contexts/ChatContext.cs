@@ -1,7 +1,7 @@
-using Api.Models;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Contexts;
+namespace Data.Contexts;
 
 public class ChatContext : DbContext
 {

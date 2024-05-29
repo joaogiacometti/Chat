@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Api/Dockerfile
+      dockerfile: Docker/Api/Dockerfile
     ports:
       - 5001:8080
     environment:
