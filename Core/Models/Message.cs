@@ -4,13 +4,13 @@ namespace Core.Models;
 
 public class Message
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] [MaxLength(50)] public required string Id { get; set; }
+
+    [MaxLength(500)] public required string Content { get; set; }
+
+    public DateTime DateTime { get; init; } = DateTime.UtcNow;
+
+    public User? User { get; init; }
     
-    [Required]
-    public string Content { get; set; }
-
-    public DateTime DateTime { get; set; } = DateTime.UtcNow;
-
-    public User User { get; set; }
+    public required string UserId { get; init; }
 }

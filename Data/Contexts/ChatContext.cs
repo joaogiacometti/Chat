@@ -6,5 +6,5 @@ namespace Data.Contexts;
 
 public class ChatContext(DbContextOptions<ChatContext> options) : IdentityDbContext<User>(options)
 {
-    private DbSet<Message> Messages { get; set; }
+    public DbSet<Message> Messages { get; set; }
 }

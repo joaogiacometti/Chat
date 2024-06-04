@@ -8,5 +8,8 @@ public static class CoreConfig
     public static void ConfigureApp(this IServiceCollection service, IConfiguration config)
     {
         service.ConfigureConnection(config);
+        service.ConfigureMapper();
+        service.ConfigureRepository();
+        service.ConfigureService();
     }
 }
