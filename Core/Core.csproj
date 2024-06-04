@@ -17,6 +17,14 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dtos\" />
+      <Folder Include="Interfaces\Repositories\" />
+      <Folder Include="Interfaces\Services\" />
+      <Folder Include="Mappers\" />
     </ItemGroup>
 
 </Project>

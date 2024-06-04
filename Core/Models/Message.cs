@@ -12,5 +12,5 @@ public class Message
 
     public DateTime DateTime { get; set; } = DateTime.UtcNow;
 
-    public Account Account { get; set; }
+    public User User { get; set; }
 }

@@ -1,13 +1,10 @@
 using Core.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Contexts;
 
-public class ChatContext : DbContext
+public class ChatContext(DbContextOptions<ChatContext> options) : IdentityDbContext<User>(options)
 {
-    public DbSet<Account> Accounts { get; set; } = null!;
-
-    public DbSet<Message> Messages { get; set; } = null!;
-
-    public ChatContext(DbContextOptions<ChatContext> options) : base(options){}
+    private DbSet<Message> Messages { get; set; }
 }
