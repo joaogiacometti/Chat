@@ -11,5 +11,6 @@ public static class CoreConfig
         service.ConfigureMapper();
         service.ConfigureRepository();
         service.ConfigureService();
+        service.ConfigureSeeder();
     }
 }

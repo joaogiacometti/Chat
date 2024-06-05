@@ -11,11 +11,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureApp(builder.Configuration);
 
 builder.Services.AddAuthentication()
-    .AddBearerToken(IdentityConstants.BearerScheme);
-
+    .AddCookie(IdentityConstants.ApplicationScheme);
+    
 builder.Services.AddAuthorizationBuilder();
 
-builder.Services.AddIdentityCore<User>()
+builder.Services
+    .AddIdentityCore<User>()
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<ChatContext>()
     .AddApiEndpoints();
 
@@ -31,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.Services.SeedData();
 
 app.Run();

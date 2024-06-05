@@ -1,5 +1,6 @@
 using Core.Dtos;
 using Core.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -10,6 +11,7 @@ namespace Api.Controllers
     {
         private readonly IMessageService _service = service;
 
+        [Authorize(Roles = "User, Admin")]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -25,6 +27,7 @@ namespace Api.Controllers
             }
         }
 
+        [Authorize(Roles ="User, Admin")]
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(string id)
         {
@@ -40,6 +43,7 @@ namespace Api.Controllers
             }
         }
 
+        [Authorize(Roles ="User, Admin")]
         [HttpGet("GetByUser/{id}")]
         public async Task<IActionResult> GetByUser(string id)
         {
@@ -55,6 +59,7 @@ namespace Api.Controllers
             }
         }
 
+        [Authorize(Roles ="User, Admin")]
         [HttpPost("Send")]
         public async Task<IActionResult> Send([FromBody] MessageDto messageDto)
         {
@@ -70,6 +75,7 @@ namespace Api.Controllers
             }
         }
 
+        [Authorize(Roles ="User, Admin")]
         [HttpPut("Update")]
         public async Task<IActionResult> Put([FromBody] MessageMutateDto messageDto)
         {
@@ -85,6 +91,7 @@ namespace Api.Controllers
             }
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
