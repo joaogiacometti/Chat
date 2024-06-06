@@ -10,6 +10,8 @@ public interface IMessageRepository
     
     Task<IEnumerable<Message>> GetByUserId(string id);
 
+    Task<IEnumerable<Message>> GetByChatId(string chatId);
+    
     Task Send(Message message);
 
     Task Update(Message message);

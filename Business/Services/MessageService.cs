@@ -35,6 +35,13 @@ public class MessageService(IMessageRepository repo, IMapper mapper) : IMessageS
         return _mapper.Map<IEnumerable<MessageDto>>(list);
     }
 
+    public async Task<IEnumerable<MessageDto>> GetByChatId(string chatId)
+    {
+        var list = await _repo.GetByChatId(chatId);
+        
+        return _mapper.Map<IEnumerable<MessageDto>>(list);
+    }
+
     public async Task Send(MessageCreateDto messageDto)
     {
         var message = _mapper.Map<Message>(messageDto);

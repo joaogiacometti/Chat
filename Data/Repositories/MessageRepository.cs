@@ -29,6 +29,13 @@ public class MessageRepository(ChatContext context) : IMessageRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Message>> GetByChatId(string chatId)
+    {
+        return await _context.Messages
+            .Where(m => m.ChatId == chatId)
+            .ToListAsync();
+    }
+
     public async Task Send(Message message)
     {
         _context.Messages.Add(message);

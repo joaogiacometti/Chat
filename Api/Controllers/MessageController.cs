@@ -44,12 +44,28 @@ namespace Api.Controllers
         }
 
         [Authorize(Roles ="User, Admin")]
-        [HttpGet("GetByUser/{id}")]
-        public async Task<IActionResult> GetByUser(string id)
+        [HttpGet("GetByUserId/{id}")]
+        public async Task<IActionResult> GetByUserId(string id)
         {
             try
             {
                 var list = await _service.GetByUserId(id);
+
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [Authorize(Roles ="User, Admin")]
+        [HttpGet("GetByChatId/{id}")]
+        public async Task<IActionResult> GetByChatId(string id)
+        {
+            try
+            {
+                var list = await _service.GetByChatId(id);
 
                 return Ok(list);
             }
