@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Dtos;
 
-public record MessageMutateDto(
+public record MessageUpdateDto(
     [Required]
     [StringLength(50, MinimumLength = 1, ErrorMessage = "Invalid id")]
     string Id,

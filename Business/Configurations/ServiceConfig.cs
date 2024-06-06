@@ -9,5 +9,6 @@ public static class ServiceConfig
     public static void ConfigureService(this IServiceCollection service)
     {
         service.AddTransient<IMessageService, MessageService>();
+        service.AddTransient<IChatService, ChatService>();
     }
 }

@@ -8,7 +8,8 @@ public class MessageMapper : Profile
 {
     public MessageMapper()
     {
-        CreateMap<MessageMutateDto, Message>().ReverseMap();
         CreateMap<MessageDto, Message>().ReverseMap();
+        CreateMap<MessageUpdateDto, Message>().ReverseMap();
+        CreateMap<MessageCreateDto, Message>().ReverseMap();
     }
 }

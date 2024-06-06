@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models;
 
@@ -10,7 +11,13 @@ public class Message
 
     public DateTime DateTime { get; init; } = DateTime.UtcNow;
 
+    [ForeignKey("UserId")]
     public User? User { get; init; }
     
-    public required string UserId { get; init; }
+    public string? UserId { get; init; }
+    
+    [ForeignKey("ChatId")]
+    public Chat? Chat { get; init; }
+    
+    public string? ChatId { get; init; }
 }

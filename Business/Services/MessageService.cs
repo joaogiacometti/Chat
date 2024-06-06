@@ -33,7 +33,7 @@ public class MessageService(IMessageRepository repo, IMapper mapper) : IMessageS
         return _mapper.Map<IEnumerable<MessageDto>>(list);
     }
 
-    public async Task Send(MessageDto messageDto)
+    public async Task Send(MessageCreateDto messageDto)
     {
         var message = _mapper.Map<Message>(messageDto);
         message.Id = Guid.NewGuid().ToString();
@@ -41,7 +41,7 @@ public class MessageService(IMessageRepository repo, IMapper mapper) : IMessageS
         await _repo.Send(message);
     }
 
-    public async Task Update(MessageMutateDto messageDto)
+    public async Task Update(MessageUpdateDto messageDto)
     {
         var message = _mapper.Map<Message>(messageDto);
 

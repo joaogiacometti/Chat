@@ -11,6 +11,7 @@ public static class MapperConfig
         service.AddTransient(provider => new MapperConfiguration(mc =>
         {
             mc.AddProfile<MessageMapper>();
+            mc.AddProfile<ChatMapper>();
         }).CreateMapper());
     }
 }

@@ -2,12 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Dtos;
 
-public record MessageDto(
-    string? Id,
+public record ChatCreateDto(
     [Required]
     [StringLength(50, MinimumLength = 1, ErrorMessage = "Invalid id")]
     string UserId,
     [Required]
-    [StringLength(500, MinimumLength = 1, ErrorMessage = "Content must be between 1 and 500")]
-    string Content
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Title must be between 1 and 100 characters")]
+    string Title
 );

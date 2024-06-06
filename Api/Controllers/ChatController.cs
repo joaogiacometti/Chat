@@ -1,72 +1,66 @@
 using Core.Dtos;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController(IMessageService service) : ControllerBase
+    public class ChatController(IChatService service) : ControllerBase
     {
-        private readonly IMessageService _service = service;
+        private readonly IChatService _service = service;
 
-        [Authorize(Roles = "User, Admin")]
+        [Authorize(Roles="Admin, User")]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                var list = await _service.GetAll();
-
-                return Ok(list);
+                return Ok(await _service.GetAll());
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
-        [Authorize(Roles ="User, Admin")]
+        
+        [Authorize(Roles="Admin, User")]
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(string id)
         {
             try
             {
-                var list = await _service.GetById(id);
-
-                return Ok(list);
+                return Ok(await _service.GetById(id));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
-        [Authorize(Roles ="User, Admin")]
-        [HttpGet("GetByUser/{id}")]
-        public async Task<IActionResult> GetByUser(string id)
+        
+        [Authorize(Roles="Admin, User")]
+        [HttpGet("GetByUserId/{id}")]
+        public async Task<IActionResult> GetByUserId(string id)
         {
             try
             {
-                var list = await _service.GetByUserId(id);
-
-                return Ok(list);
+                return Ok(await _service.GetByUserId(id));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
-        [Authorize(Roles ="User, Admin")]
-        [HttpPost("Send")]
-        public async Task<IActionResult> Send([FromBody] MessageCreateDto messageDto)
+        
+        [Authorize(Roles="Admin, User")]
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromBody] ChatCreateDto chatDto)
         {
             try
             {
-                await _service.Send(messageDto);
-
+                await _service.Create(chatDto);
                 return Ok();
             }
             catch (Exception ex)
@@ -74,15 +68,14 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [Authorize(Roles ="User, Admin")]
+        
+        [Authorize(Roles="Admin, User")]
         [HttpPut("Update")]
-        public async Task<IActionResult> Put([FromBody] MessageUpdateDto messageDto)
+        public async Task<IActionResult> Update([FromBody] ChatUpdateDto chatDto)
         {
             try
             {
-                await _service.Update(messageDto);
-
+                await _service.Update(chatDto);
                 return Ok();
             }
             catch (Exception ex)
@@ -90,15 +83,14 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [Authorize(Roles ="Admin")]
+        
+        [Authorize(Roles="Admin, User")]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             try
             {
                 await _service.Delete(id);
-
                 return Ok();
             }
             catch (Exception ex)

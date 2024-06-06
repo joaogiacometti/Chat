@@ -10,9 +10,9 @@ public interface IMessageService
     
     Task<IEnumerable<MessageDto>> GetByUserId(string id);
 
-    Task Send(MessageDto messageDto);
+    Task Send(MessageCreateDto messageDto);
 
-    Task Update(MessageMutateDto messageDto);
+    Task Update(MessageUpdateDto messageDto);
 
     Task Delete(string id);
 }

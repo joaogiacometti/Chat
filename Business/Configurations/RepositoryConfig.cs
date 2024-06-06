@@ -9,5 +9,6 @@ public static class RepositoryConfig
     public static void ConfigureRepository(this IServiceCollection service)
     {
         service.AddTransient<IMessageRepository, MessageRepository>();
+        service.AddTransient<IChatRepository, ChatRepository>();
     }
 }

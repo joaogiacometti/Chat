@@ -13,7 +13,7 @@ namespace Api.Migrations
 {
     [DbContext(typeof(ChatContext))]
     [Migration("20240604133204_initial")]
-    partial class initial
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
