@@ -1,6 +1,7 @@
 using System.Collections;
 using AutoMapper;
 using Core.Dtos;
+using Core.Exceptions;
 using Core.Interfaces.Repositories;
 using Core.Interfaces.Services;
 using Core.Models;
@@ -21,7 +22,8 @@ public class MessageService(IMessageRepository repo, IMapper mapper) : IMessageS
 
     public async Task<MessageDto> GetById(string id)
     {
-        var message = await _repo.GetById(id);
+        var message = await _repo.GetById(id) ??
+                      throw new MessageNotFoundException("Message not found");
 
         return _mapper.Map<MessageDto>(message);
     }
@@ -41,15 +43,22 @@ public class MessageService(IMessageRepository repo, IMapper mapper) : IMessageS
         await _repo.Send(message);
     }
 
-    public async Task Update(MessageUpdateDto messageDto)
+    public async Task Update(MessageUpdateDto newMessageDto)
     {
-        var message = _mapper.Map<Message>(messageDto);
+        var messageDb = await _repo.GetById(newMessageDto.Id)
+                           ?? throw new MessageNotFoundException("Message not found");
 
-        await _repo.Update(message);
+        messageDb.Content = newMessageDto.Content;
+
+
+        await _repo.Update(messageDb);
     }
 
     public async Task Delete(string id)
     {
-        await _repo.Delete(id);
+        var messageDb = await _repo.GetById(id)
+                           ?? throw new MessageNotFoundException("Message not found");
+
+        await _repo.Delete(messageDb);
     }
 }

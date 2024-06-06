@@ -6,7 +6,7 @@ public interface IChatRepository
 {
     Task<IEnumerable<Chat>> GetAll();
     
-    Task<Chat> GetById(string id);
+    Task<Chat?> GetById(string id);
     
     Task<IEnumerable<Chat>> GetByUserId(string id);
 
@@ -14,5 +14,5 @@ public interface IChatRepository
 
     Task Update(Chat chat);
 
-    Task Delete(string id);
+    Task Delete(Chat chat);
 }

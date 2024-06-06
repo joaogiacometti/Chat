@@ -1,5 +1,6 @@
 using AutoMapper;
 using Core.Dtos;
+using Core.Exceptions;
 using Core.Interfaces.Repositories;
 using Core.Interfaces.Services;
 using Core.Models;
@@ -20,7 +21,8 @@ public class ChatService(IChatRepository repo, IMapper mapper) : IChatService
 
     public async Task<ChatDto> GetById(string id)
     {
-        var chat = await _repo.GetById(id);
+        var chat = await _repo.GetById(id)
+                   ?? throw new ChatNotFoundException("Chat not found");
 
         return _mapper.Map<ChatDto>(chat);
     }
@@ -40,15 +42,20 @@ public class ChatService(IChatRepository repo, IMapper mapper) : IChatService
         await _repo.Create(chat);
     }
 
-    public async Task Update(ChatUpdateDto chatDto)
+    public async Task Update(ChatUpdateDto newChatDto)
     {
-        var chat = _mapper.Map<Chat>(chatDto);
-
-        await _repo.Update(chat);
+        var chatDb = await _repo.GetById(newChatDto.Id)
+                  ?? throw new ChatNotFoundException("Chat not found");
+        chatDb.Title = newChatDto.Title;
+        
+        await _repo.Update(chatDb);
     }
 
     public async Task Delete(string id)
     {
-        await _repo.Delete(id);
+        var chatDb = await _repo.GetById(id)
+                          ?? throw new ChatNotFoundException("Chat not found");
+        
+        await _repo.Delete(chatDb);
     }
 }

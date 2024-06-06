@@ -6,7 +6,7 @@ public interface IMessageRepository
 {
     Task<IEnumerable<Message>> GetAll();
     
-    Task<Message> GetById(string id);
+    Task<Message?> GetById(string id);
     
     Task<IEnumerable<Message>> GetByUserId(string id);
 
@@ -14,5 +14,5 @@ public interface IMessageRepository
 
     Task Update(Message message);
 
-    Task Delete(string id);
+    Task Delete(Message message);
 }

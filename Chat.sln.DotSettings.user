@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6c83fa5c_002D2a87_002D49e9_002D947a_002D7a6b57fcde35/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ChatServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::04F7F3DB-FE49-48C6-ABA4-17AACF1C9301::net8.0::Test.Service.ChatServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::04F7F3DB-FE49-48C6-ABA4-17AACF1C9301::net8.0::Test.Service.MessageServiceTests.GetById_ShouldThrowIfNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::04F7F3DB-FE49-48C6-ABA4-17AACF1C9301::net8.0::Test.Service.MessageServiceTests.GetById_ShouldNotThrowIfFound&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

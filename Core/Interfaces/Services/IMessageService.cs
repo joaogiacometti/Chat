@@ -12,7 +12,7 @@ public interface IMessageService
 
     Task Send(MessageCreateDto messageDto);
 
-    Task Update(MessageUpdateDto messageDto);
+    Task Update(MessageUpdateDto newMessageDto);
 
     Task Delete(string id);
 }

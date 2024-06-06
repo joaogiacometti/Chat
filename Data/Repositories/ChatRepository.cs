@@ -14,10 +14,10 @@ public class ChatRepository(ChatContext context) : IChatRepository
         return await _context.Chats.ToListAsync();
     }
 
-    public async Task<Chat> GetById(string id)
+    public async Task<Chat?> GetById(string id)
     {
         return await _context.Chats
-            .Where(c => c.Id == id).FirstOrDefaultAsync() ?? throw new Exception("Chat not found");
+            .Where(c => c.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Chat>> GetByUserId(string id)
@@ -35,17 +35,13 @@ public class ChatRepository(ChatContext context) : IChatRepository
 
     public async Task Update(Chat chat)
     {
-        var chatDb = await GetById(chat.Id);
-
-        chatDb.Title = chat.Title;
+        _context.Entry(chat).State = EntityState.Modified;
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(string id)
+    public async Task Delete(Chat chat)
     {
-        var chatDb = await GetById(id);
-
-        _context.Chats.Remove(chatDb);
+        _context.Entry(chat).State = EntityState.Deleted;
         await _context.SaveChangesAsync();
     }
 }

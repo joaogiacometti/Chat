@@ -8,5 +8,5 @@ public record ChatUpdateDto(
     string Id,
     [Required]
     [StringLength(100, MinimumLength = 1, ErrorMessage = "Title must be between 1 and 100 characters")]
-    string Content
+    string Title
 );

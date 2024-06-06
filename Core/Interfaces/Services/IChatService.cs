@@ -12,7 +12,7 @@ public interface IChatService
 
     Task Create(ChatCreateDto chatDto);
 
-    Task Update(ChatUpdateDto chatDto);
+    Task Update(ChatUpdateDto newChatDto);
 
     Task Delete(string id);
 }

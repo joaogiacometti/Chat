@@ -14,10 +14,10 @@ public class MessageRepository(ChatContext context) : IMessageRepository
         return await _context.Messages.ToListAsync();
     }
 
-    public async Task<Message> GetById(string id)
+    public async Task<Message?> GetById(string id)
     {
         var messageDb = await _context.Messages
-            .Where(m => m.Id == id).FirstOrDefaultAsync() ?? throw new Exception("Message not found");
+            .Where(m => m.Id == id).FirstOrDefaultAsync();
 
         return messageDb; 
     }
@@ -37,17 +37,15 @@ public class MessageRepository(ChatContext context) : IMessageRepository
 
     public async Task Update(Message message)
     {
-        var messageDb = await GetById(message.Id);
-
-        messageDb.Content = message.Content;
+        _context.Messages.Entry(message).State = EntityState.Modified;
+        
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(string id)
+    public async Task Delete(Message message)
     {
-        var messageDb = await GetById(id);
-
-        _context.Messages.Remove(messageDb);
+        _context.Entry(message).State = EntityState.Deleted;
+        
         await _context.SaveChangesAsync();
     }
 }
