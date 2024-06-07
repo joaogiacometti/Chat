@@ -1,6 +1,7 @@
 using Business.Services;
 using Core.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Client;
 
 namespace Business.Configurations;
 
@@ -10,5 +11,6 @@ public static class ServiceConfig
     {
         service.AddTransient<IMessageService, MessageService>();
         service.AddTransient<IChatService, ChatService>();
+        service.AddTransient<IUserService, UserService>();
     }
 }

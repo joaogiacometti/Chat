@@ -12,6 +12,7 @@ public static class MapperConfig
         {
             mc.AddProfile<MessageMapper>();
             mc.AddProfile<ChatMapper>();
+            mc.AddProfile<UserMapper>();
         }).CreateMapper());
     }
 }
