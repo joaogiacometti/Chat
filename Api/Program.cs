@@ -14,6 +14,15 @@ builder.Services.AddAuthentication()
     .AddCookie(IdentityConstants.ApplicationScheme);
     
 builder.Services.AddAuthorizationBuilder();
+builder.Services.AddCors(op =>
+{
+    op.AddDefaultPolicy(p =>
+    {
+        p.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 builder.Services
     .AddIdentityCore<User>()
@@ -29,6 +38,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

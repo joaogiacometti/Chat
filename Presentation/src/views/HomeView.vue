@@ -1,9 +1,5 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <main>
-    <NavBar></NavBar>
-    <h1>Welcome</h1>
-  </main>
+  <div><h1>Welcome</h1></div>
 </template>
