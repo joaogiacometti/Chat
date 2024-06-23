@@ -10,5 +10,3 @@ import Navbar from '@/components/Navbar.vue'
     </v-main>
   </v-app>
 </template>
-
-<script setup></script>

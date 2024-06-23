@@ -19,6 +19,7 @@ const login = async () => {
     var result = await userStore.login(email.value, password.value)
 
     if (result.status === 200) {
+      userStore.signIn()
       router.push({ name: 'Home' })
     } else {
       snackBarText.value = result
