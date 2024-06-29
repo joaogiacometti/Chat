@@ -28,6 +28,7 @@ builder.Services.AddCors(op =>
 builder.Services
     .AddIdentityCore<User>()
     .AddRoles<Role>()
+    .AddSignInManager()
     .AddEntityFrameworkStores<ChatContext>()
     .AddApiEndpoints();
 
